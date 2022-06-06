@@ -10,17 +10,7 @@ namespace HackerRank
     {
         static void Main(string[] args)
         {
-            List<int> ar = new List<int>() { 1, 2, 3, 4, 5, 6 };
-            int k = 5;
-            int n = ar.Count;
-
-            int result = divisibleSumPairs(n, k, ar);
-
-            var strings = new List<string>() { "ab", "ab", "abc" };
-            var queries = new List<string>() { "ab", "abc", "bc" };
-            matchingStrings(strings, queries);
-
-            var median = findMedian(new List<int>() { 5, 3, 1, 2, 4 });
+            lonelyinteger(new List<int>() { 0, 0, 1, 2, 1});
         }
 
         public static void miniMaxSum(List<int> arr)
@@ -151,6 +141,28 @@ namespace HackerRank
         {
             arr.Sort();
             return arr[(int)(arr.Count() / 2) ];
+        }
+
+        //Given five positive integers, find the minimum and maximum values that can be calculated
+        //by summing exactly four of the five integers. Then print the respective minimum and maximum values as
+        //a single line of two space-separated long integers.
+        //Example: arr = [1,3,5,7,9], the minimum sum is 16, the maximum sum is 24 
+        static void miniMaxSum2(List<int> arr)
+        {
+            arr.Sort();
+            long sumAux = arr[1] + (long)arr[2] + arr[3];
+            Console.WriteLine($"{(arr[0] + sumAux)} {(sumAux + arr[4])}");     
+        }
+
+        //Given an array of integers, where all elements but one occur twice, find the unique element.
+        //Example a = [1,2,3,4,3,2,1]
+        //The unique element is 4.
+        public static int lonelyinteger(List<int> a)
+        {
+            int loneValue = a[0];
+            for (int i = 1; i < a.Count; i++)
+                loneValue ^= a[i];
+            return loneValue;
         }
     }
 }
