@@ -10,7 +10,7 @@ namespace HackerRank
     {
         static void Main(string[] args)
         {
-            lonelyinteger(new List<int>() { 0, 0, 1, 2, 1});
+            gradingStudentsTest();
         }
 
         public static void miniMaxSum(List<int> arr)
@@ -103,8 +103,6 @@ namespace HackerRank
             return wordsParts;
         }
 
-
-
         public static int divisibleSumPairs(int n, int k, List<int> ar)
         {
             int count = 0;
@@ -125,7 +123,6 @@ namespace HackerRank
             return count;
         }
 
-
         public static List<int> matchingStrings(List<string> strings, List<string> queries)
         {
             var results = new List<int>(queries.Count);
@@ -135,7 +132,6 @@ namespace HackerRank
             
             return results;
         }
-
 
         public static int findMedian(List<int> arr)
         {
@@ -164,5 +160,58 @@ namespace HackerRank
                 loneValue ^= a[i];
             return loneValue;
         }
+
+        /*
+        HackerLand University has the following grading policy:
+        - Every student receives a grade in the inclusive range from 0 to 100.
+        - Any grade less than 40 is a failing grade.
+
+        Sam is a professor at the university and likes to round each student's grade according to these rules:
+        - If the difference between the and the next multiple of 5 is less than 3, round grade up to the next multiple of 5.
+        - If the value of grade is less than 38, no rounding occurs as the result will still be a failing grade.
+        
+        Examples:
+        - grade = 84, round to  (85 - 84 is less than 3)
+        - grade = 29, do not round(result is less than 40)
+        - grade = 57, do not round(60 - 57 is 3 or higher)
+        
+        Given the initial value of  for each of Sam's  students, write code to automate the rounding process.
+        */
+        public static void gradingStudentsTest()
+        {
+            var grades = new List<int>() { 84, 29, 57 };
+            gradingStudentsV1(grades);
+        }
+        public static List<int> gradingStudentsV1(List<int> grades)
+        {
+            var finalGrades = new List<int>(grades.Count);
+
+            foreach (var grade in grades)
+            {
+                if (grade < 38)
+                {
+                    finalGrades.Add(grade);
+                }
+                else
+                {
+                    int nextFiveMultiple = 0;
+                    int i = grade + 1;
+                    while (nextFiveMultiple == 0)
+                    {
+                        if (i % 5 == 0) nextFiveMultiple = i;
+                        i++;
+                    }
+                    if ((nextFiveMultiple - grade) < 3)
+                        finalGrades.Add(nextFiveMultiple);
+                    else
+                        finalGrades.Add(grade);
+                }
+            }
+
+            return finalGrades;
+        }
+
+        public static List<int> gradingStudentsV2(List<int> grades)
+            => grades.Select(grade => grade >= 38 && grade % 5 >= 3 ? grade + (5 - (grade % 5)) : grade).ToList();
     }
 }
