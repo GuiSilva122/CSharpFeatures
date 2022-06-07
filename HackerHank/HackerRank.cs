@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HackerHank;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace HackerRank
     {
         static void Main(string[] args)
         {
-            gradingStudentsTest();
+            FlippingBitsTest();
         }
 
         public static void miniMaxSum(List<int> arr)
@@ -213,5 +214,10 @@ namespace HackerRank
 
         public static List<int> gradingStudentsV2(List<int> grades)
             => grades.Select(grade => grade >= 38 && grade % 5 >= 3 ? grade + (5 - (grade % 5)) : grade).ToList();
+
+        public static void FlippingBitsTest()
+        {
+            Console.WriteLine(FlippingBits.flippingBits(1));
+        }
     }
 }

@@ -7,7 +7,7 @@ namespace AlgoMania
     {
         static void Main(string[] args)
         {
-            CreateLinkedList();
+            ValidateParenthesis();
         }
 
         private static void TwoSum()
@@ -48,6 +48,17 @@ namespace AlgoMania
             Console.WriteLine($"Head: {linkedList.head().Value}");
             Console.WriteLine($"Tail: {linkedList.tail().Value}");
             Console.WriteLine($"IsEmpty: {linkedList.is_empty()}");
+        }
+
+        static void ValidateParenthesis()
+        {
+            string value = "{{}}";
+            Console.WriteLine($"Validating the string: {value}");
+            Console.WriteLine($"the string is valid = {ValidParenthesis.ValidateParenthesis(value)}");
+
+            value = "{(}}";
+            Console.WriteLine($"Validating the string: {value}");
+            Console.WriteLine($"the string is valid = {ValidParenthesis.ValidateParenthesis(value)}");
         }
     }
 }
