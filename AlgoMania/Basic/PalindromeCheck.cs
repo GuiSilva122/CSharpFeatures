@@ -4,16 +4,21 @@
     {
         public static bool IsPalindrome(string parameter)
         {
-            var letters = parameter.ToCharArray();
-            int i = 0, j = letters.Length - 1;
+            int i = 0;
+            int j = parameter.Length - 1;
 
-            while (i < letters.Length && j > 0)
+            while (i < parameter.Length && j > 0)
             {
-                if (i == j) return true;
-                if (letters[i] != letters[j]) return false;
+                if (i == j) 
+                    return true;
+                
+                if (parameter[i] != parameter[j]) 
+                    return false;
+                
                 i++;
                 j--;
             }
+
             return true;
         }
 

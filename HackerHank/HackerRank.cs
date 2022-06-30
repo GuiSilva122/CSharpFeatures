@@ -11,7 +11,41 @@ namespace HackerRank
     {
         static void Main(string[] args)
         {
-            FlippingBitsTest();
+            var result = CalPoints(new string[] { "5", "2", "C", "D", "+" });
+            CountingValleysTest();
+        }
+
+        public static int CalPoints(string[] ops)
+        {
+            List<int> results = new List<int>();
+            int index = 0;
+
+            for(int i = 0; i < ops.Length; i++)
+            {
+                if (ops[i] == "+")
+                {
+                    int value = results[index -1] + results[index - 2];
+                    results.Add(value);
+                    index++;
+                }
+                else if (ops[i] == "D")
+                {
+                    int value = results[index - 1] * 2;
+                    results.Add(value);
+                    index++;
+                }
+                else if (ops[i] == "C")
+                {
+                    index--;
+                    results.RemoveAt(index);
+                }
+                else
+                {
+                    results.Add(Convert.ToInt32(ops[i]));
+                    index++;
+                }
+            }
+            return results.Sum();
         }
 
         public static void miniMaxSum(List<int> arr)
@@ -218,6 +252,37 @@ namespace HackerRank
         public static void FlippingBitsTest()
         {
             Console.WriteLine(FlippingBits.flippingBits(1));
+        }
+
+        public static void DiagonalDifferenceTest()
+        {
+            var matrix = new List<List<int>>()
+            {
+                new List<int> { 11, 02, 04},
+                new List<int> { 04, 05, 06 },
+                new List<int> { 10, 08, -12 }
+            };
+
+            var otherMatrix = new List<List<int>>()
+            {
+                new List<int> { 1, 2, 3},
+                new List<int> { 4, 5, 6 },
+                new List<int> { 9, 8, 9 }
+            };
+
+            Console.WriteLine($"Absolute Diagonal difference: {DiagonalSquare.DiagonalDifference(matrix)}");
+            Console.WriteLine($"Absolute Diagonal difference: {DiagonalSquare.DiagonalDifference(otherMatrix)}");
+        }
+
+        public static void CountingSortTest()
+        {
+            CountingSort.countingSort(new List<int> { 1, 1, 3, 2, 1 });
+        }
+
+        private static void CountingValleysTest()
+        {
+            string path = "UDDDUDUU";
+            Console.WriteLine($"Counting Valleys input: {path}, expected output: 1, received output: {CountingValleys.countingValleys(8, path)}");
         }
     }
 }

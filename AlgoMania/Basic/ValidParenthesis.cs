@@ -38,7 +38,11 @@ namespace AlgoMania
             };
 
             foreach (char s in value)
-                if (!(mapping.ContainsKey(s) && (stack.Count > 0 && mapping[s] == stack.Pop())))
+                if (!
+                      (
+                        mapping.ContainsKey(s) && (stack.Count > 0 && mapping[s] == stack.Pop())
+                      )
+                   )
                     stack.Push(s);
 
             return stack.Count == 0;
