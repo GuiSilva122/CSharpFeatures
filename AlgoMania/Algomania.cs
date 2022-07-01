@@ -6,7 +6,7 @@ namespace AlgoMania
     public class Algomania
     {
         static void Main(string[] args)
-        {
+        {   
             DecodeStringTest();
         }
 
